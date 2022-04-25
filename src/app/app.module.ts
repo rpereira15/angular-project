@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './core/header/header.component';
+import { ProfessorModule } from './modules/professor/professor.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
+    ProfessorModule,
     AppRoutingModule
   ],
   providers: [],
