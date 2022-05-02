@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProfessorCreateComponent } from './pages/professor-create/professor-create.component';
 import { GenericRouterComponent, ProfessorRoutingModule } from './professor-routing.module';
 import { ProfessorListComponent } from './pages/professor-list/professor-list.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,6 +15,7 @@ import { ProfessorListComponent } from './pages/professor-list/professor-list.co
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ProfessorRoutingModule
   ]
 })

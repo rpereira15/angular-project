@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfessorDetalhado } from '../../models/professor.model';
+import { ProfessorService } from '../../services/professor.service';
 
 @Component({
   selector: 'app-professor-create',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfessorCreateComponent implements OnInit {
 
-  constructor() { }
+  professor = {} as ProfessorDetalhado;
+
+  constructor(private professorService: ProfessorService) { 
+    
+  }
 
   ngOnInit(): void {
+  }
+
+  salvarController() {
+    this.professorService.salvarService(this.professor);
   }
 
 }
