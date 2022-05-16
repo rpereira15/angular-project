@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProfessorDetalhado } from '../../models/professor.model';
 import { ProfessorService } from '../../services/professor.service';
 
@@ -11,12 +12,12 @@ export class ProfessorCreateComponent implements OnInit {
 
   professor = {} as ProfessorDetalhado;
   
-  constructor(private professorService: ProfessorService) { 
+  constructor(private professorService: ProfessorService,
+    private router: Router) { 
     
   }
 
   ngOnInit(): void {
-    this.inicioComponente();
   }
 
   salvarController() {
@@ -25,11 +26,9 @@ export class ProfessorCreateComponent implements OnInit {
       console.log(`Professor ${result?.nome} cadastrado com sucesso.`);
       this.professor = {} as ProfessorDetalhado;
 
-    });
-  }
+      this.router.navigate(['professor/list']);
 
-  inicioComponente() {
-    console.log("Início de componente");
+    });
   }
 
 }

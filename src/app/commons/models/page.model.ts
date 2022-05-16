@@ -1,3 +1,6 @@
-export interface Page<T> {
-    content: T[]
+export interface Pagina<T> {
+    conteudo: T[];
+    paginaSelecionada: number;
+    proximaPagina: boolean;
+    tamanhoPagina: number;
 }

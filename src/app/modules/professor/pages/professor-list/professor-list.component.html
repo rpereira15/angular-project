@@ -1,1 +1,27 @@
-<p>professor-list works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="col-md-2">Codigo</th>
+            <th class="col-md-8">Nome</th>
+            <th class="col-md-2">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let professor of paginaLista.conteudo">
+            <td>{{professor.id}}</td>
+            <td>{{professor.nome}}</td>
+            <td>
+                <a class="alert-secondary" href="">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <a class="ml-2 alert-secondary" href="">
+                    <i class="bi bi-trash-fill"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="card-footer text-muted">
+    @flpquerino
+</div>
