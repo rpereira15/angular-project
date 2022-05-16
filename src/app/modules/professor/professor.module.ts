@@ -4,6 +4,7 @@ import { ProfessorCreateComponent } from './pages/professor-create/professor-cre
 import { GenericRouterComponent, ProfessorRoutingModule } from './professor-routing.module';
 import { ProfessorListComponent } from './pages/professor-list/professor-list.component';
 import { FormsModule } from '@angular/forms';
+import { ProfessorAtualizarComponent } from './pages/professor-atualizar/professor-atualizar.component';
 
 
 
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     GenericRouterComponent,
     ProfessorCreateComponent,
-    ProfessorListComponent
+    ProfessorListComponent,
+    ProfessorAtualizarComponent
   ],
   imports: [
     CommonModule,

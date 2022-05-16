@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Pagina } from 'src/app/commons/models/page.model';
 import { ProfessorSimples } from '../../models/professor.model';
 import { ProfessorService } from '../../services/professor.service';
@@ -15,7 +16,8 @@ export class ProfessorListComponent implements OnInit {
     proximaPagina: false,
     tamanhoPagina: 30
   } as Pagina<ProfessorSimples>;
-  constructor(private professorService: ProfessorService) { }
+  constructor(private professorService: ProfessorService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.listarControler();
@@ -32,6 +34,10 @@ export class ProfessorListComponent implements OnInit {
         };
       })
 
+  }
+
+  atualizarProfessor(professor: ProfessorSimples) {
+    this.router.navigate([`professor/atualizar/${professor.id}`])
   }
 
 }

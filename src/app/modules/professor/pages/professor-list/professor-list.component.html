@@ -11,10 +11,10 @@
             <td>{{professor.id}}</td>
             <td>{{professor.nome}}</td>
             <td>
-                <a class="alert-secondary" href="">
+                <a class="alert-secondary" (click)="atualizarProfessor(professor)">
                     <i class="bi bi-pencil-square"></i>
                 </a>
-                <a class="ml-2 alert-secondary" href="">
+                <a class="ml-2 alert-secondary">
                     <i class="bi bi-trash-fill"></i>
                 </a>
             </td>

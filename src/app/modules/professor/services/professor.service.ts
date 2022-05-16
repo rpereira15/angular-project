@@ -17,6 +17,20 @@ export class ProfessorService {
       .toPromise();
   }
 
+  atualizarService(professor: ProfessorDetalhado):
+    Promise<ProfessorDetalhado | undefined> {
+    return this.httpClient
+      .put<ProfessorDetalhado>(`http://localhost:9092/api/v1/professor/${professor.id}`, professor)
+      .toPromise();
+  }
+
+  buscarUmProfessorService(id: number):
+    Promise<ProfessorDetalhado | undefined> {
+    return this.httpClient
+      .get<ProfessorDetalhado>(`http://localhost:9092/api/v1/professor/${id}`)
+      .toPromise();
+  }
+
   listarService():Promise<Pagina<ProfessorSimples> | undefined> {
       return this.httpClient
       .get<Pagina<ProfessorSimples>>('http://localhost:9092/api/v1/professor/')
