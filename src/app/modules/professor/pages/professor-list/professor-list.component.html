@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" *ngIf="contador > 0">
     <thead>
         <tr>
             <th class="col-md-2">Codigo</th>
@@ -14,14 +14,16 @@
                 <a class="alert-secondary" (click)="atualizarProfessor(professor)">
                     <i class="bi bi-pencil-square"></i>
                 </a>
-                <a class="ml-2 alert-secondary">
+                <a class="ml-2 alert-secondary" (click)="excluirProfessor(professor)">
                     <i class="bi bi-trash-fill"></i>
                 </a>
             </td>
         </tr>
     </tbody>
 </table>
-
+<div *ngIf="contador == 0">
+    Sem registro
+</div>
 <div class="card-footer text-muted">
     @flpquerino
 </div>

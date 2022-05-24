@@ -10,17 +10,14 @@ import { ProfessorService } from '../../services/professor.service';
   styleUrls: ['./professor-list.component.scss']
 })
 export class ProfessorListComponent implements OnInit {
-  paginaLista = {
-    conteudo: [],
-    paginaSelecionada: 0,
-    proximaPagina: false,
-    tamanhoPagina: 30
-  } as Pagina<ProfessorSimples>;
+
+  paginaLista = {} as Pagina<ProfessorSimples>;
+  contador = 0;
   constructor(private professorService: ProfessorService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.listarControler();
+    this.resetarPagina();
   }
 
   listarControler() {
@@ -32,12 +29,31 @@ export class ProfessorListComponent implements OnInit {
           proximaPagina: false,
           tamanhoPagina: 30
         };
+
+        this.contador = this.paginaLista.conteudo.length;
       })
 
   }
 
   atualizarProfessor(professor: ProfessorSimples) {
     this.router.navigate([`professor/atualizar/${professor.id}`])
+  }
+
+  excluirProfessor(professor: ProfessorSimples) {
+    this.professorService.excluirService(professor.id)
+      .then(() => {
+        this.resetarPagina();
+      })
+  }
+
+  resetarPagina() {
+    this.paginaLista = {
+      conteudo: [],
+      paginaSelecionada: 0,
+      proximaPagina: false,
+      tamanhoPagina: 30
+    } as Pagina<ProfessorSimples>;
+    this.listarControler();
   }
 
 }

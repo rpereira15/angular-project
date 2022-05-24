@@ -36,4 +36,10 @@ export class ProfessorService {
       .get<Pagina<ProfessorSimples>>('http://localhost:9092/api/v1/professor/')
       .toPromise();
   }
+
+  excluirService(id: number | undefined):Promise<any>  {
+    return this.httpClient
+      .delete<any>(`http://localhost:9092/api/v1/professor/${id}`)
+      .toPromise();
+  }
 }
