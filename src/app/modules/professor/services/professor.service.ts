@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { ProfessorDetalhado, ProfessorSimples } from '../models/professor.model';
 import { Pagina } from 'src/app/commons/models/page.model';
+import { Filter } from 'src/app/commons/models/filtro.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,11 @@ export class ProfessorService {
       .toPromise();
   }
 
-  listarService():Promise<Pagina<ProfessorSimples> | undefined> {
+  listarService(filter?: Filter):Promise<Pagina<ProfessorSimples> | undefined> {
+      const filtroFinal = !!filter ? `?${filter?.key}=${filter?.value}` : '';
       return this.httpClient
-      .get<Pagina<ProfessorSimples>>('http://localhost:9092/api/v1/professor/')
+      .get<Pagina<ProfessorSimples>>
+      (`http://localhost:9092/api/v1/professor/${filtroFinal}`)
       .toPromise();
   }
 

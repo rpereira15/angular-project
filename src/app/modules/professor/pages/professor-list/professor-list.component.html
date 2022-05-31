@@ -1,3 +1,36 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <input class="form-control col-md-5" *ngIf="filtroKey === 'nome'" type="search" [(ngModel)]="filtroValue"
+            placeholder="Digite o termo a ser pesquisado" aria-label="Search">
+
+        <select class="form-select col-md-5" [(ngModel)]="filtroValue" *ngIf="filtroKey === 'sexo'">
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select>
+
+        <select class="form-select col-md-5" [(ngModel)]="filtroValue" *ngIf="filtroKey === 'titulacao'">
+            <option selected>Selecione o Titulação</option>
+            <option value="G">Graduação</option>
+            <option value="E">Especialização</option>
+            <option value="M">Mestrado</option>
+            <option value="D">Doutorado</option>
+            <option value="P">PhD</option>
+        </select>
+        <select class="form-select col-md-3" [(ngModel)]="filtroKey">
+            <option value="selecione">Selecione um campo</option>
+            <option value="nome">Nome</option>
+            <option value="sexo">Sexo</option>
+            <option value="titulacao">Titulação</option>
+        </select>
+
+        <button class="btn btn-outline-success" (click)="buscaComFiltro()">
+            Buscar
+        </button>
+        <button class="btn btn-outline-warning" (click)="resetarPagina()">
+            Limpar
+        </button>
+    </div>
+</nav>
 <table class="table" *ngIf="contador > 0">
     <thead>
         <tr>

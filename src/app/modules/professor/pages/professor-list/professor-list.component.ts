@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Filter } from 'src/app/commons/models/filtro.model';
 import { Pagina } from 'src/app/commons/models/page.model';
 import { ProfessorSimples } from '../../models/professor.model';
 import { ProfessorService } from '../../services/professor.service';
@@ -13,6 +14,9 @@ export class ProfessorListComponent implements OnInit {
 
   paginaLista = {} as Pagina<ProfessorSimples>;
   contador = 0;
+  filtroValue = "";
+  filtroKey = "nome";
+
   constructor(private professorService: ProfessorService,
     private router: Router) { }
 
@@ -20,8 +24,8 @@ export class ProfessorListComponent implements OnInit {
     this.resetarPagina();
   }
 
-  listarControler() {
-    this.professorService.listarService()
+  listarControler(filter?: Filter) {
+    this.professorService.listarService(filter)
       .then(result => {
         this.paginaLista = !!result ? result : {
           conteudo: [],
@@ -54,6 +58,22 @@ export class ProfessorListComponent implements OnInit {
       tamanhoPagina: 30
     } as Pagina<ProfessorSimples>;
     this.listarControler();
+  }
+
+  buscaComFiltro() {
+    this.paginaLista = {
+      conteudo: [],
+      paginaSelecionada: 0,
+      proximaPagina: false,
+      tamanhoPagina: 30
+    } as Pagina<ProfessorSimples>;
+
+    const filtroController = {
+      key: this.filtroKey,
+      value: this.filtroValue
+    } as Filter
+
+    this.listarControler(filtroController);
   }
 
 }
