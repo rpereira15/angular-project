@@ -31,29 +31,36 @@
         </button>
     </div>
 </nav>
-<table class="table" *ngIf="contador > 0">
-    <thead>
-        <tr>
-            <th class="col-md-2">Codigo</th>
-            <th class="col-md-8">Nome</th>
-            <th class="col-md-2">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let professor of paginaLista.conteudo">
-            <td>{{professor.id}}</td>
-            <td>{{professor.nome}}</td>
-            <td>
-                <a class="alert-secondary" (click)="atualizarProfessor(professor)">
-                    <i class="bi bi-pencil-square"></i>
-                </a>
-                <a class="ml-2 alert-secondary" (click)="excluirProfessor(professor)">
-                    <i class="bi bi-trash-fill"></i>
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="col-md-12" *ngIf="contador > 0">
+    <table class="table col-md-12" >
+        <thead>
+            <tr>
+                <th class="col-md-2">Codigo</th>
+                <th class="col-md-8">Nome</th>
+                <th class="col-md-2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let professor of paginaLista.conteudo">
+                <td>{{professor.id}}</td>
+                <td>{{professor.nome}}</td>
+                <td>
+                    <a class="alert-secondary" (click)="atualizarProfessor(professor)">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a class="ml-2 alert-secondary" (click)="excluirProfessor(professor)">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-md-12">
+        <button type="button" (click)="buscaComFiltro(false)" disabled="paginaLista.paginaSelecionada === 0" class="btn btn-outline-info mr-2">Anterior</button>
+        <button type="button" (click)="buscaComFiltro(true)" disabled="!paginaLista.proximaPagina" class="btn btn-outline-info mr-2">Próxima</button>
+        <label>Registros 1 de 30</label>
+    </div>
+</div>
 <div *ngIf="contador == 0">
     Sem registro
 </div>

@@ -16,6 +16,8 @@ export class ProfessorListComponent implements OnInit {
   contador = 0;
   filtroValue = "";
   filtroKey = "nome";
+  filtroTamanhoPagina = 2;
+  filtroPaginaDesejada = 0;
 
   constructor(private professorService: ProfessorService,
     private router: Router) { }
@@ -60,7 +62,8 @@ export class ProfessorListComponent implements OnInit {
     this.listarControler();
   }
 
-  buscaComFiltro() {
+  buscaComFiltro(avanca?: boolean) {
+    
     this.paginaLista = {
       conteudo: [],
       paginaSelecionada: 0,
@@ -70,10 +73,13 @@ export class ProfessorListComponent implements OnInit {
 
     const filtroController = {
       key: this.filtroKey,
-      value: this.filtroValue
+      value: this.filtroValue,
+      pageSize: this.filtroTamanhoPagina,
+      wantedPage: this.filtroPaginaDesejada
     } as Filter
 
     this.listarControler(filtroController);
   }
+
 
 }

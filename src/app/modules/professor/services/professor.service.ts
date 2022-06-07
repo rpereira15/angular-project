@@ -6,7 +6,7 @@ import { Filter } from 'src/app/commons/models/filtro.model';
 
 const parametrosPadrao = {
   tamanhoPagina : 2,
-  paginaDesejada: 1
+  paginaDesejada: 0
 }
 
 @Injectable({
@@ -38,12 +38,12 @@ export class ProfessorService {
   }
 
   listarService(filter?: Filter):Promise<Pagina<ProfessorSimples> | undefined> {
-      const filtroFinal = !!filter ? `?${filter?.key}=${filter?.value}` : '';
+      const filtroFinal = !!filter?.value ? `?${filter?.key}=${filter?.value}` : '';
 
       const queryParams = new HttpParams({
         fromObject: {
-          tamanhoPagina : parametrosPadrao.tamanhoPagina,
-          paginaDesejada: parametrosPadrao.paginaDesejada
+          tamanhoPagina : !!filter?.pageSize ? filter?.pageSize : parametrosPadrao.tamanhoPagina,
+          paginaDesejada: !!filter?.wantedPage ? filter?.wantedPage : parametrosPadrao.paginaDesejada
         }
       })
       return this.httpClient
